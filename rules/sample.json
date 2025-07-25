@@ -1,0 +1,12 @@
+[
+    {
+        "id": "rule1",
+        "name": "Unauthorized File Access",
+        "conditions": {
+            "file_path": "/etc/passwd",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    }
+]
