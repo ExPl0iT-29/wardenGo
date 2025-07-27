@@ -1,43 +1,64 @@
 package main
 
 import (
-    "os" // Remove blank identifier and use os for directory creation
-    "github.com/sirupsen/logrus"
-    "github.com/ExPl0iT-29/wardenGo/internal/config"
-    "github.com/ExPl0iT-29/wardenGo/internal/engine"
-    "github.com/ExPl0iT-29/wardenGo/internal/scanner"
+	"flag"
+	"os"
+	"strings"
+
+	"github.com/ExPl0iT-29/wardenGo/internal/config"
+	"github.com/ExPl0iT-29/wardenGo/internal/engine"
+	"github.com/ExPl0iT-29/wardenGo/internal/models"
+	"github.com/ExPl0iT-29/wardenGo/internal/scanner"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
-    // Load rules
-    rules, err := config.LoadRules("rules/sample.json")
-    if err != nil {
-        logrus.Fatal("Failed to load rules: ", err)
-    }
+	// Define command-line flags
+	watchDirs := flag.String("watch-dirs", os.TempDir(), "Comma-separated list of directories to monitor")
+	rulesFile := flag.String("rules-file", "rules/sample.json", "Path to the rules file")
+	flag.Parse()
 
-    // Initialize rules engine
-    re := engine.NewRulesEngine(rules)
+	// Initialize rule manager
+	ruleManager, err := config.NewRuleManager(*rulesFile)
+	if err != nil {
+		logrus.Fatal("Failed to initialize rule manager: ", err)
+	}
 
-    // Initialize scanner
-    s, err := scanner.NewScanner()
-    if err != nil {
-        logrus.Fatal("Failed to initialize scanner: ", err)
-    }
+	// Initialize rules engine
+	re := engine.NewRulesEngine(ruleManager.Rules)
 
-    // Use a valid Windows path for the directory to watch
-    watchDir := `C:\Temp` // Use raw string literals for Windows paths
-    // Create the directory if it doesn't exist
-    if err := os.MkdirAll(watchDir, 0755); err != nil {
-        logrus.Fatal("Failed to create watch directory: ", err)
-    }
+	// Start watching rules file for changes
+	ruleUpdateChan := make(chan []models.Rule)
+	go func() {
+		for rules := range ruleUpdateChan {
+			re.UpdateRules(rules)
+		}
+	}()
+	if err := ruleManager.WatchRules(ruleUpdateChan); err != nil {
+		logrus.Fatal("Failed to watch rules file: ", err)
+	}
 
-    logrus.Infof("Watching directory: %s", watchDir)
-    if err := s.Watch(watchDir); err != nil {
-        logrus.Fatal("Failed to start watcher: ", err)
-    }
+	// Initialize scanner
+	s, err := scanner.NewScanner()
+	if err != nil {
+		logrus.Fatal("Failed to initialize scanner: ", err)
+	}
 
-    // Process events
-    for event := range s.Events {
-        re.Evaluate(event)
-    }
+	// Split watch directories and start watching
+	directories := strings.Split(*watchDirs, ",")
+	for _, dir := range directories {
+		dir = strings.TrimSpace(dir)
+		if err := os.MkdirAll(dir, 0755); err != nil {
+			logrus.Fatalf("Failed to create watch directory %s: %v", dir, err)
+		}
+		logrus.Infof("Watching directory: %s", dir)
+		if err := s.Watch(dir); err != nil {
+			logrus.Fatalf("Failed to start watcher for %s: %v", dir, err)
+		}
+	}
+
+	// Process events
+	for event := range s.Events {
+		re.Evaluate(event)
+	}
 }
