@@ -3,6 +3,7 @@ package scanner
 import (
 	"fmt"
 	"os"
+	"sync"
 	"time"
 
 	"github.com/ExPl0iT-29/wardenGo/internal/models"
@@ -11,8 +12,9 @@ import (
 )
 
 type Scanner struct {
-	Watcher *fsnotify.Watcher
-	Events  chan models.Event
+	Watcher     *fsnotify.Watcher
+	Events      chan models.Event
+	eventLoopOnce sync.Once
 }
 
 func NewScanner() (*Scanner, error) {
@@ -44,9 +46,9 @@ func (s *Scanner) Watch(path string) error {
 		return fmt.Errorf("failed to watch path: %v", err)
 	}
 
-	// Start the event loop only once (in NewScanner or main)
-	// This avoids creating multiple goroutines for each Watch call
-	if len(s.Watcher.WatchList()) == 1 {
+	// Start the event loop only once using sync.Once
+	// This ensures the goroutine is started exactly once, regardless of how many directories are watched
+	s.eventLoopOnce.Do(func() {
 		go func() {
 			for {
 				select {
@@ -72,7 +74,7 @@ func (s *Scanner) Watch(path string) error {
 				}
 			}
 		}()
-	}
+	})
 	return nil
 }
 

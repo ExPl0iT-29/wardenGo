@@ -1,0 +1,103 @@
+[
+    {
+        "id": "rule-server-001",
+        "name": "Critical System File Modification - /etc/passwd",
+        "conditions": {
+            "file_path": "/etc/passwd",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-server-002",
+        "name": "Critical System File Modification - /etc/shadow",
+        "conditions": {
+            "file_path": "/etc/shadow",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-server-003",
+        "name": "SSH Configuration Tampering",
+        "conditions": {
+            "file_path": "/etc/ssh/sshd_config",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-server-004",
+        "name": "Sudoers File Modification",
+        "conditions": {
+            "file_path": "/etc/sudoers",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-server-005",
+        "name": "Crontab File Creation in User Directory",
+        "conditions": {
+            "file_path": "/var/spool/cron",
+            "action": "create"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-server-006",
+        "name": "System Binary Directory Modification",
+        "conditions": {
+            "file_path": "/usr/bin",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-server-007",
+        "name": "System Binary Directory Modification - /usr/sbin",
+        "conditions": {
+            "file_path": "/usr/sbin",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-server-008",
+        "name": "Log File Deletion",
+        "conditions": {
+            "file_path": "/var/log",
+            "action": "remove"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-server-009",
+        "name": "Network Configuration Change",
+        "conditions": {
+            "file_path": "/etc/network/interfaces",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-server-010",
+        "name": "Firewall Rules Modification",
+        "conditions": {
+            "file_path": "/etc/iptables",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    }
+]
+

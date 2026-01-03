@@ -1,0 +1,103 @@
+[
+    {
+        "id": "rule-dev-001",
+        "name": "Source Code Modification Outside Business Hours",
+        "conditions": {
+            "file_path": "src",
+            "action": "write"
+        },
+        "severity": "low",
+        "action": "alert"
+    },
+    {
+        "id": "rule-dev-002",
+        "name": "Git Configuration Modification",
+        "conditions": {
+            "file_path": ".git/config",
+            "action": "write"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-dev-003",
+        "name": "Package Lock File Modification",
+        "conditions": {
+            "file_path": "package-lock.json",
+            "action": "write"
+        },
+        "severity": "low",
+        "action": "alert"
+    },
+    {
+        "id": "rule-dev-004",
+        "name": "Dependency File Modification - requirements.txt",
+        "conditions": {
+            "file_path": "requirements.txt",
+            "action": "write"
+        },
+        "severity": "low",
+        "action": "alert"
+    },
+    {
+        "id": "rule-dev-005",
+        "name": "Dependency File Modification - go.mod",
+        "conditions": {
+            "file_path": "go.mod",
+            "action": "write"
+        },
+        "severity": "low",
+        "action": "alert"
+    },
+    {
+        "id": "rule-dev-006",
+        "name": "Build Artifact Creation",
+        "conditions": {
+            "file_path": "build",
+            "action": "create"
+        },
+        "severity": "low",
+        "action": "alert"
+    },
+    {
+        "id": "rule-dev-007",
+        "name": "Test File Deletion",
+        "conditions": {
+            "file_path": "test",
+            "action": "remove"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-dev-008",
+        "name": "Documentation Deletion",
+        "conditions": {
+            "file_path": "docs",
+            "action": "remove"
+        },
+        "severity": "low",
+        "action": "alert"
+    },
+    {
+        "id": "rule-dev-009",
+        "name": "Environment File Access",
+        "conditions": {
+            "file_path": ".env",
+            "action": "write"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-dev-010",
+        "name": "CI/CD Configuration Modification",
+        "conditions": {
+            "file_path": ".github",
+            "action": "write"
+        },
+        "severity": "medium",
+        "action": "alert"
+    }
+]
+

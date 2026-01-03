@@ -29,7 +29,8 @@ func (re *RulesEngine) Evaluate(event models.Event) {
 	for _, rule := range re.Rules {
 		match := true
 		for key, value := range rule.Conditions {
-			if event.Details[key] != value {
+			eventValue, ok := event.Details[key].(string)
+			if !ok || eventValue != value {
 				match = false
 				break
 			}

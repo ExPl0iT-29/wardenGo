@@ -1,0 +1,103 @@
+[
+    {
+        "id": "rule-web-001",
+        "name": "Web Server Configuration Modification - Apache",
+        "conditions": {
+            "file_path": "httpd.conf",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-web-002",
+        "name": "Web Server Configuration Modification - Nginx",
+        "conditions": {
+            "file_path": "nginx.conf",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-web-003",
+        "name": "PHP Configuration File Modification",
+        "conditions": {
+            "file_path": "php.ini",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-web-004",
+        "name": "Web Shell File Creation - .php",
+        "conditions": {
+            "file_path": ".php",
+            "action": "create"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-web-005",
+        "name": "Web Shell File Creation - .jsp",
+        "conditions": {
+            "file_path": ".jsp",
+            "action": "create"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-web-006",
+        "name": "Web Shell File Creation - .asp",
+        "conditions": {
+            "file_path": ".asp",
+            "action": "create"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-web-007",
+        "name": "Upload Directory Executable Creation",
+        "conditions": {
+            "file_path": "uploads",
+            "action": "create"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-web-008",
+        "name": "SSL Certificate Directory Modification",
+        "conditions": {
+            "file_path": "ssl",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-web-009",
+        "name": "Web Application Log Deletion",
+        "conditions": {
+            "file_path": "logs",
+            "action": "remove"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-web-010",
+        "name": "Web Root Directory Executable Creation",
+        "conditions": {
+            "file_path": "www",
+            "action": "create"
+        },
+        "severity": "high",
+        "action": "alert"
+    }
+]
+

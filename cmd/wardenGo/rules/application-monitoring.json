@@ -1,0 +1,103 @@
+[
+    {
+        "id": "rule-app-001",
+        "name": "Application Configuration File Modification",
+        "conditions": {
+            "file_path": "config",
+            "action": "write"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-app-002",
+        "name": "Database Configuration Change",
+        "conditions": {
+            "file_path": "database",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-app-003",
+        "name": "Secret Key File Access",
+        "conditions": {
+            "file_path": ".env",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-app-004",
+        "name": "SSL Certificate Modification",
+        "conditions": {
+            "file_path": ".pem",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-app-005",
+        "name": "SSL Certificate Modification - .crt",
+        "conditions": {
+            "file_path": ".crt",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-app-006",
+        "name": "SSL Certificate Modification - .key",
+        "conditions": {
+            "file_path": ".key",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-app-007",
+        "name": "Application Log File Deletion",
+        "conditions": {
+            "file_path": "logs",
+            "action": "remove"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-app-008",
+        "name": "Executable File Creation in Application Directory",
+        "conditions": {
+            "file_path": ".exe",
+            "action": "create"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-app-009",
+        "name": "Script File Creation - .sh",
+        "conditions": {
+            "file_path": ".sh",
+            "action": "create"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-app-010",
+        "name": "Script File Creation - .py",
+        "conditions": {
+            "file_path": ".py",
+            "action": "create"
+        },
+        "severity": "medium",
+        "action": "alert"
+    }
+]
+

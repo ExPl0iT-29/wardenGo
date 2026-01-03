@@ -1,0 +1,83 @@
+[
+    {
+        "id": "rule-win-001",
+        "name": "System32 Directory Modification",
+        "conditions": {
+            "file_path": "C:\\Windows\\System32",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-win-002",
+        "name": "Hosts File Modification",
+        "conditions": {
+            "file_path": "C:\\Windows\\System32\\drivers\\etc\\hosts",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-win-003",
+        "name": "Windows Registry Backup Deletion",
+        "conditions": {
+            "file_path": "C:\\Windows\\System32\\config",
+            "action": "remove"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-win-004",
+        "name": "Startup Programs Directory Modification",
+        "conditions": {
+            "file_path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup",
+            "action": "create"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-win-005",
+        "name": "User Startup Directory Modification",
+        "conditions": {
+            "file_path": "C:\\Users",
+            "action": "create"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-win-006",
+        "name": "Event Log Directory Access",
+        "conditions": {
+            "file_path": "C:\\Windows\\System32\\winevt\\Logs",
+            "action": "write"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-win-007",
+        "name": "Scheduled Tasks Directory Modification",
+        "conditions": {
+            "file_path": "C:\\Windows\\Tasks",
+            "action": "create"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-win-008",
+        "name": "Windows Defender Exclusion Modification",
+        "conditions": {
+            "file_path": "C:\\ProgramData\\Microsoft\\Windows Defender",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    }
+]
+

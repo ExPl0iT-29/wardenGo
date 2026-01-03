@@ -1,0 +1,103 @@
+[
+    {
+        "id": "rule-compliance-001",
+        "name": "Audit Log File Access",
+        "conditions": {
+            "file_path": "audit",
+            "action": "write"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-compliance-002",
+        "name": "Audit Log File Deletion",
+        "conditions": {
+            "file_path": "audit",
+            "action": "remove"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-compliance-003",
+        "name": "Financial Data File Access",
+        "conditions": {
+            "file_path": "financial",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-compliance-004",
+        "name": "Personal Data File Access - GDPR",
+        "conditions": {
+            "file_path": "personal_data",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-compliance-005",
+        "name": "Backup File Deletion",
+        "conditions": {
+            "file_path": "backup",
+            "action": "remove"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-compliance-006",
+        "name": "Archive File Modification",
+        "conditions": {
+            "file_path": "archive",
+            "action": "write"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-compliance-007",
+        "name": "Compliance Report Deletion",
+        "conditions": {
+            "file_path": "reports",
+            "action": "remove"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-compliance-008",
+        "name": "Database Backup Access",
+        "conditions": {
+            "file_path": ".sql",
+            "action": "write"
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "rule-compliance-009",
+        "name": "Encrypted File Access",
+        "conditions": {
+            "file_path": ".encrypted",
+            "action": "write"
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "rule-compliance-010",
+        "name": "Document Retention Policy Violation",
+        "conditions": {
+            "file_path": "documents",
+            "action": "remove"
+        },
+        "severity": "high",
+        "action": "alert"
+    }
+]
+
